@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>GROUPS OF 1s IN MATRIX</title>
+	</head>
+
+	<script type="text/javascript">
+	
+		var matrix = [
+				  [ 1, 1, 0, 0, 1],
+				  [ 1, 0, 0, 1, 0],
+				  [ 1, 1, 0, 1, 0],
+				  [ 0, 0, 1, 0, 0]
+				];
+		var m = matrix.length;
+		var n = matrix[0].length;
+		//document.write(m);
+		//document.write(n);
+		document.write("Number of groups of 1s are : " + count(matrix,m,n));
+		//console.log(m);
+		//alert(count(matrix,m,n));	
+		
+		function count(matrix, m, n){
+			var countX = 0;
+			for(i=0; i<m; i++) {
+				for(j=0; j<n; j++) {
+					if(matrix[i][j] == 1) {
+						countX++;
+						//document.write(countX+"</br>");
+						clear(matrix, m, n, i, j);
+					}
+				}
+			}
+			return countX;
+		};
+	
+		function clear(matrix, m, n, i, j) {
+			if(i<0 || j<0 || i>m-1 || j>n-1 || matrix[i][j] == 0) {
+				return;
+			}
+			matrix[i][j] = 0;
+			clear(matrix, m, n, i-1, j);
+			clear(matrix, m, n, i+1, j);
+			clear(matrix, m, n, i,   j-1);
+			clear(matrix, m, n, i,   j+1);
+		};
+	</script>
+
+	<body>
+	</body>	
+</html
